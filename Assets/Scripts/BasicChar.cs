@@ -60,6 +60,15 @@ public class BasicChar : MonoBehaviour
             return true;
         }
     }
+
+
+    //intialized function
+    public BasicChar(double health, double stamina)
+    {
+        this.health = health;
+        this.stamina = stamina;
+        this.dead = false;
+    }
     // Start is called before the first frame update
     void Start()
     {

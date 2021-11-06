@@ -39,9 +39,16 @@ public class IG_Player : CharacterTemplate
     protected int playerID;
     protected string playerName;
 
+    //Setter
+    public void setOpponent(IG_Player opponent){
+        this.opponent  = opponent;
+    }
+
     //Getter
     public IG_Player getOpponent(){
         return opponent;
     }
-
+    public void receivePhysicalDmg(int dmg){
+        heathPts -= dmg;    
+    }
 }

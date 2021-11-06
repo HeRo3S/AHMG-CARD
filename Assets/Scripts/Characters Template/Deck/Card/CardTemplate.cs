@@ -15,10 +15,25 @@ public abstract class CardTemplate : MonoBehaviour
     protected int basePhysicalDmg;
     protected int baseMagicDmg;
     //Card mechanic
-    protected delegate void cardDelegate(IG_Player owner);
-    protected cardDelegate playCard;
+    public delegate void cardDelegate(IG_Player owner);
+    public cardDelegate playCard;
+
+    //Copy current card info to new one
+    protected IG_Card copyToIG(){
+        IG_Card target = new IG_Card();
+        target.cardName = this.cardName;
+        target.cardDescription = this.cardDescription;
+        target.cardId = this.cardId;
+        target.rank = this.rank;
+        target.cardType = this.cardType;
+        target.baseCost = this.baseCost;
+        target.basePhysicalDmg = this.basePhysicalDmg;
+        target.baseMagicDmg = this.baseMagicDmg;
+        return target;
+    }
+    
     //Function to create IG_Card
-    public IG_Card createCard(IG_Player player){
+    public virtual IG_Card createCard(IG_Player player){
         return null;
     }
 }

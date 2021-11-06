@@ -5,11 +5,11 @@ using UnityEngine;
 public class IG_Card : CardTemplate
 {
     //Card dynamic stat
-    private int cost;
-    private int physicalDmg;
-    private int magicDmg;
+    internal int cost;
+    internal int physicalDmg;
+    internal int magicDmg;
     //Other variable
-    private IG_Player owner;
+    internal IG_Player owner;
     private IG_Deck deck;
 
     //Card logic

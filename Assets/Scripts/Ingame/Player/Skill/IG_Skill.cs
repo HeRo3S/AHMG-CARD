@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public class IG_Skill : SkillTemplate{
+public class IG_Skill : SkillTemplate, TriggerUpdateInterface
+{
     //Skill dynamic stat
     private int cooldown;
 
@@ -17,5 +18,11 @@ public class IG_Skill : SkillTemplate{
     public void doSkillLogic(){
         cooldown = Math.Min(cooldown--, 0);
     }
+//                                                  **********IMPLEMENTATION***********
 
+    //Trigger Update
+    public void triggerUpdate(List<triggerTypes> triggers){
+        //Here come the if else madness
+        
+    }
 }

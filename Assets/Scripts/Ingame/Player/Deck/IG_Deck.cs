@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class IG_Deck : DeckTemplate
+public class IG_Deck : DeckTemplate, TriggerUpdateInterface, ClickableInterface
 {
     //Dynamic card list
     private List<CardTemplate> cardList;
@@ -13,11 +14,42 @@ public class IG_Deck : DeckTemplate
     //Create deck
     public void replenishDeck(){
         foreach (CardTemplate card in baseCardList){
-            cardList.Add(card.createCard(owner));
+            cardList.Add(card);
         }
     }
     //Add card to deck
     public void addCard(CardTemplate card, int pos){
         cardList.Insert(pos, card);
+    }
+    //Get card from deck
+    public IG_Card drawIG(int pos, bool removeFrDeck){
+        //Just for testing
+        if(cardList.Count < 0){
+            replenishDeck();
+        }
+        //Real deal
+        pos = Math.Min(pos, cardList.Count);
+        IG_Card target = cardList[pos].createCard(owner);
+        if(removeFrDeck){
+            cardList.RemoveAt(pos);
+        }
+        return target;
+    }
+
+//                                                  **********IMPLEMENTATION***********
+    //Initialize
+    public void Start(){
+        replenishDeck();
+        shuffleDeck();
+    }
+
+    //Trigger Update
+    public void triggerUpdate(List<triggerTypes> triggers){
+        //Here come the if else madness
+    }
+
+    //Click function
+    public void onClick(){
+        owner.drawCard(0, true);
     }
 }

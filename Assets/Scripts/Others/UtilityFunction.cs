@@ -33,7 +33,6 @@ public static class UtilityFunction{
             int diff = max - min;
             int mod = generatedValue % diff;
             int normalizedNumber = min + mod;
-
             return normalizedNumber;
         }
     }

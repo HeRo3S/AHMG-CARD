@@ -17,10 +17,11 @@ public abstract class CardTemplate : MonoBehaviour
     //Card mechanic
     public delegate void cardDelegate(IG_Player owner);
     public cardDelegate playCard;
-
+    public GameObject IGcardObj;
     //Copy current card info to new one
     protected IG_Card copyToIG(){
-        IG_Card target = new IG_Card();
+        GameObject cardObj = Instantiate(IGcardObj);
+        IG_Card target = cardObj.AddComponent<IG_Card>();
         target.cardName = this.cardName;
         target.cardDescription = this.cardDescription;
         target.cardId = this.cardId;

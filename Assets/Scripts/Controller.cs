@@ -9,8 +9,12 @@ public class Controller : MonoBehaviour
     private List<IG_Player> players;
     
     public void Start(){
+        TestDeck testDeck = Resources.Load<TestDeck>("AHMG-CARD");
+        SwordMasterChar testChar =  Resources.Load<SwordMasterChar>("AHMG-CARD");
+        players.Add(testChar.createPlayer(testDeck));
+        players.Add(testChar.createPlayer(testDeck)); 
         players[0].setOpponent(players[1]);
-        players[1].setOpponent(players[0]);        
+        players[1].setOpponent(players[0]);      
     }
     public void Update(){
         //Check if an object is clicked on

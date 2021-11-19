@@ -9,8 +9,9 @@ public class Controller : MonoBehaviour
     private List<IG_Player> players;
     
     public void Start(){
-        TestDeck testDeck = Resources.Load<TestDeck>("AHMG-CARD");
-        SwordMasterChar testChar =  Resources.Load<SwordMasterChar>("AHMG-CARD");
+        players =  new List<IG_Player>();
+        TestDeck testDeck = Resources.Load<TestDeck>("AHMG-CARD/TestDeck") as TestDeck;
+        SwordMasterChar testChar =  ScriptableObject.CreateInstance("SwordMasterChar") as SwordMasterChar;
         players.Add(testChar.createPlayer(testDeck));
         players.Add(testChar.createPlayer(testDeck)); 
         players[0].setOpponent(players[1]);
@@ -32,10 +33,10 @@ public class Controller : MonoBehaviour
    }
  }
 
-    void LateUpdate(){
-        foreach (IG_Player player in players){
-            player.triggerUpdate(triggers);
-        }
-    triggers.Clear();    
-    }
+    // void LateUpdate(){
+    //     foreach (IG_Player player in players){
+    //         player.triggerUpdate(triggers);
+    //     }
+    // triggers.Clear();    
+    // }
 }

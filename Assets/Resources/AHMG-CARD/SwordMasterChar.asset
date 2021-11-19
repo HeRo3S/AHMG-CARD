@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b31160393d97c047a9093039c4ff8d9, type: 3}
+  m_Name: SwordMasterChar
+  m_EditorClassIdentifier: 
+  characterName: Sword Master
+  characterId: 00
+  characterDescription: '?'
+  IGcharObj: {fileID: 0}

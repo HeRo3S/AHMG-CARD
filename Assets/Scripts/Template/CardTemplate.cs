@@ -14,10 +14,12 @@ public abstract class CardTemplate : ScriptableObject
     internal int baseCost;
     internal int basePhysicalDmg;
     internal int baseMagicDmg;
- 
+    public delegate void cardDelegate(IG_Player owner);
+    public cardDelegate playCard;
     //Copy current card info to new one
        public GameObject IGcardObj;
     protected IG_Card copyToIG(){
+        IGcardObj = Resources.Load<GameObject>("Card_Prefab") as GameObject;        
         GameObject cardObj = Instantiate(IGcardObj);
         IG_Card target = cardObj.AddComponent<IG_Card>();
         target.baseCard = this;

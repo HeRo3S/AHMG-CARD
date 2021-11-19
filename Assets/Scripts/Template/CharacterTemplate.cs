@@ -20,6 +20,7 @@ public abstract class CharacterTemplate : ScriptableObject
     //Copy to IG_Character
     public GameObject IGcharObj;
     protected IG_Player copyToIG(){
+        IGcharObj = Resources.Load<GameObject>("Card_Prefab") as GameObject;
         GameObject playerObj = Instantiate(IGcharObj);
         IG_Player target = playerObj.AddComponent<IG_Player>();
         target.baseCharacter = this;

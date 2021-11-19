@@ -7,7 +7,7 @@ public class IG_Deck : MonoBehaviour, TriggerUpdateInterface, ClickableInterface
     //Base deck
     internal DeckTemplate baseDeck;
     //Dynamic card list
-    private List<CardTemplate> cardList;
+    private List<CardTemplate> cardList = new List<CardTemplate>();
     private IG_Player owner;
     //Shuffle deck
     public void shuffleDeck(){

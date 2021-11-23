@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IG_Card : MonoBehaviour, TriggerUpdateInterface
+public class IG_Card : MonoBehaviour, TriggerUpdateInterface, ClickableInterface
 {
     //Base card
     internal CardTemplate baseCard;

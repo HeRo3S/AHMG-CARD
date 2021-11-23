@@ -20,6 +20,7 @@ public class SwordMasterChar : CharacterTemplate
     {
         IG_Player target = copyToIG();
         target.deck = deck.createDeck();
+        target.deck.owner = target;
         return target;
     }
 }

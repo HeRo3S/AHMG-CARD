@@ -8,7 +8,7 @@ public class IG_Deck : MonoBehaviour, TriggerUpdateInterface, ClickableInterface
     internal DeckTemplate baseDeck;
     //Dynamic card list
     private List<CardTemplate> cardList = new List<CardTemplate>();
-    private IG_Player owner;
+    internal IG_Player owner;
     //Shuffle deck
     public void shuffleDeck(){
         cardList.Shuffle();
@@ -26,17 +26,18 @@ public class IG_Deck : MonoBehaviour, TriggerUpdateInterface, ClickableInterface
     //Get card from deck
     public IG_Card drawIG(int pos, bool removeFrDeck){
         //Just for testing
-        if(cardList.Count < 0){
+        if(cardList.Count <= 0){
             replenishDeck();
         }
         //Real deal
-        pos = Math.Min(pos, cardList.Count);
+        pos = Math.Min(pos, cardList.Count - 1);
         IG_Card target = cardList[pos].createCard(owner);
         if(removeFrDeck){
             cardList.RemoveAt(pos);
         }
         return target;
     }
+
 
 //                                                  **********IMPLEMENTATION***********
     //Initialize

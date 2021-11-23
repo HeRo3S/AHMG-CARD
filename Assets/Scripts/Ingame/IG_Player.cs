@@ -6,7 +6,7 @@ public class IG_Player : MonoBehaviour, TriggerUpdateInterface
 {
     //Basic stat
 
-    protected int heathPts;
+    protected int healthPts;
     protected int stamina;
     protected int maxHp;
 
@@ -34,28 +34,44 @@ public class IG_Player : MonoBehaviour, TriggerUpdateInterface
     protected IG_Player opponent;
     internal CharacterTemplate baseCharacter;
     internal IG_Deck deck;
-    private List<IG_Card> hand;
-    protected List<IG_StatusEffect> statusEffects = new List<IG_StatusEffect>{};
+    private List<IG_Card> hand = new List<IG_Card>();
+    protected List<IG_StatusEffect> statusEffects = new List<IG_StatusEffect> { };
 
     //Account and data collect
     protected int playerID;
     protected string playerName;
 
+    //Render stats
+    protected int player_number;
 
-//                                                  *************FUNCTION*************
+    //                                                  *************FUNCTION*************
 
     //Setter
-    public void setOpponent(IG_Player opponent){
-        this.opponent  = opponent;
+    public void setOpponent(IG_Player opponent) {
+        this.opponent = opponent;
+    }
+
+    public void setRenderPosition(int _number)
+    {
+        this.player_number = _number;
     }
 
     //Getter
+    public int getHealthPts()
+    {
+        return this.healthPts;
+    }
+
+    public int getStaminaPts()
+    {
+        return this.stamina;
+    }
     public IG_Player getOpponent(){
         return opponent;
     }
 //Player specific function
     public void receivePhysicalDmg(int dmg){
-        heathPts -= dmg;    
+        healthPts -= dmg;    
     }
 
     //Draw card
@@ -66,8 +82,28 @@ public class IG_Player : MonoBehaviour, TriggerUpdateInterface
     public void removeFrHand(IG_Card card){
         hand.Remove(card);
     }
+    //Setup card position when render
+    public void setUpRenderedPosition()
+    {
+        if (player_number == 0)
+        {
+            Vector3 deckPosition = new Vector3(-1f, 0.075f, -0.65f);
+            deck.transform.position = deckPosition;
+            for (int i = 0; i < hand.Count; i++)
+            {
+                hand[i].transform.position = deckPosition + new Vector3(0.4f * (i+1), 0, 0);
+            }
+        } else if (player_number == 1) {
+            Vector3 deckPosition = new Vector3(1f, 0.075f, 0.65f);
+            deck.transform.position = deckPosition;
+            for (int i = 0; i < hand.Count; i++)
+            {
+                hand[i].transform.position = deckPosition - new Vector3(0.4f * (i+1), 0, 0);
+            }
+        }
+    }
 
-//                                                  **********IMPLEMENTATION***********
+    //                                                  **********IMPLEMENTATION***********
 
     //Trigger Update
     public void triggerUpdate(List<triggerTypes> triggers){
@@ -83,4 +119,8 @@ public class IG_Player : MonoBehaviour, TriggerUpdateInterface
         active.triggerUpdate(triggers);
     }
 
+    public void FixedUpdate()
+    {
+        setUpRenderedPosition();
+    }
 }

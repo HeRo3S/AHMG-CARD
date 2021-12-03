@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +26,7 @@ public class IG_Player : MonoBehaviour, TriggerUpdateInterface
     protected int magicDmg_flatMod;
     protected double magicDmg_pctMod;
 
+    protected bool myTurn;
     //Skill list
     protected IG_Skill passive;
     protected IG_Skill active;
@@ -43,12 +43,19 @@ public class IG_Player : MonoBehaviour, TriggerUpdateInterface
 
     //Render stats
     protected int player_number;
+    internal Controller controller;
 
     //                                                  *************FUNCTION*************
 
     //Setter
-    public void setOpponent(IG_Player opponent) {
+    public void setOpponent(IG_Player opponent)
+    {
         this.opponent = opponent;
+    }
+
+    public void setController(Controller target)
+    {
+        controller = target;
     }
 
     public void setRenderPosition(int _number)
@@ -66,23 +73,76 @@ public class IG_Player : MonoBehaviour, TriggerUpdateInterface
     {
         return this.stamina;
     }
-    public IG_Player getOpponent(){
+    public IG_Player getOpponent()
+    {
         return opponent;
     }
-//Player specific function
-    public void receivePhysicalDmg(int dmg){
-        healthPts -= dmg;    
+    //                                                              Player specific function
+
+    //Initialize turn
+    private bool canEdit = true;
+    public void setTurn(bool turn)
+    {
+        if (canEdit)
+        {
+            myTurn = turn;
+            canEdit = false;
+        }
+    }
+    //Internal value adjustment
+
+    private void healthPtsAdjust(int ammount)
+    {
+        healthPts += ammount;
+        if (healthPts <= 0)
+        {
+            controller.endGame((player_number + 1) % 2 + 1);
+        }
+    }
+    private void staminaAdjust(int amount)
+    {
+        stamina += amount;
     }
 
+    //External value adjustment
+    public void receivePhysicalDmg(int dmg)
+    {
+        healthPtsAdjust(-dmg);
+    }
+
+    public void repenishStamina(int amount)
+    {
+        staminaAdjust(amount);
+    }
+    public void consumeStamina(int amount)
+    {
+        staminaAdjust(-amount);
+    }
+
+    //Check if can play card
+
+    public bool canPlay(int cost)
+    {
+        if (myTurn && stamina >= cost)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
     //Draw card
-    public void drawCard(int pos, bool removeFrDeck){
+    public void drawCard(int pos, bool removeFrDeck)
+    {
         hand.Add(deck.drawIG(pos, removeFrDeck));
     }
     //Remove card
-    public void removeFrHand(IG_Card card){
+    public void removeFrHand(IG_Card card)
+    {
         hand.Remove(card);
     }
     //Setup card position when render
+
     public void setUpRenderedPosition()
     {
         if (player_number == 0)
@@ -91,32 +151,63 @@ public class IG_Player : MonoBehaviour, TriggerUpdateInterface
             deck.transform.position = deckPosition;
             for (int i = 0; i < hand.Count; i++)
             {
-                hand[i].transform.position = deckPosition + new Vector3(0.4f * (i+1), 0, 0);
+                hand[i].transform.position = deckPosition + new Vector3(0.4f * (i + 1), 0, 0);
             }
-        } else if (player_number == 1) {
+        }
+        else if (player_number == 1)
+        {
             Vector3 deckPosition = new Vector3(1f, 0.075f, 0.65f);
             deck.transform.position = deckPosition;
             for (int i = 0; i < hand.Count; i++)
             {
-                hand[i].transform.position = deckPosition - new Vector3(0.4f * (i+1), 0, 0);
+                hand[i].transform.position = deckPosition - new Vector3(0.4f * (i + 1), 0, 0);
             }
         }
     }
 
     //                                                  **********IMPLEMENTATION***********
 
+    //Initialization
+
+    public void Start()
+    {
+        healthPts = baseCharacter.getBaseHp();
+        stamina = baseCharacter.getBaseStaminaRegen();
+        staminaRegen = baseCharacter.getBaseStaminaRegen();
+    }
+
+
     //Trigger Update
-    public void triggerUpdate(List<triggerTypes> triggers){
-        //Here come the if else madness
+    public void triggerUpdate(HashSet<triggerTypes> triggers)
+    {
         foreach (IG_StatusEffect status in statusEffects)
         {
             status.triggerUpdate(triggers);
         }
-        foreach (IG_Card card in hand){
+        foreach (IG_Card card in hand)
+        {
             card.triggerUpdate(triggers);
         }
-        passive.triggerUpdate(triggers);
-        active.triggerUpdate(triggers);
+        // passive.triggerUpdate(triggers);
+        // active.triggerUpdate(triggers);
+
+        //Here come the if else madness
+
+        if (triggers.Contains(triggerTypes.TURN_PASSED))
+        {
+            myTurn = !myTurn;
+            if (myTurn)
+            {
+                stamina = 0;
+                repenishStamina(staminaRegen);
+                int canDraw = baseCharacter.getBaseCardDraw();
+                while (hand.Count < baseCharacter.getBaseHandSize() && canDraw > 0)
+                {
+                    drawCard(0, false);
+                    canDraw--;
+                }
+            }
+        }
     }
 
     public void FixedUpdate()

@@ -1,15 +1,18 @@
-public enum cardTypes{
+public enum cardTypes
+{
     ATTACK,
     SUPPORT,
     UTILITY
 }
 
-public enum skillTypes{
+public enum skillTypes
+{
     PASSIVE,
     ACTIVE
 }
 
-public enum triggerTypes{
+public enum triggerTypes
+{
     CARD_PLAYED,
     MOVE_PASSED,
     TURN_PASSED,
@@ -18,10 +21,11 @@ public enum triggerTypes{
     DEAL_MAGICAL_DMG,
     RECEIVE_PHYSICAL_DMG,
     RECEIVE_MAGICAL_DMG,
-    
+
 }
 
-public enum statusTypes{
+public enum statusTypes
+{
     POSITIVE,
     NEGATIVE
 }

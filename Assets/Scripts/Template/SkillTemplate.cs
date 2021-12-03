@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class SkillTemplate : ScriptableObject
 {
     //Skill info
-    public string skillName;
-    public string skillDescription;
-    public skillTypes skillType;
+    protected string skillName;
+    protected string skillDescription;
+    protected skillTypes skillType;
 
     //Base stat
     protected int baseCD;

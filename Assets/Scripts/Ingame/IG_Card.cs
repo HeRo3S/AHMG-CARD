@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,24 +17,33 @@ public class IG_Card : MonoBehaviour, TriggerUpdateInterface, ClickableInterface
     public delegate void cardDelegate(IG_Player owner);
     public cardDelegate playCard;
     //Card logic
-    public void onClick(){
-        playCard(owner);
-        owner.removeFrHand(this);
-        Destroy(gameObject);
+    public void onClick()
+    {
+        if (owner.canPlay(cost))
+        {
+            owner.controller.addBattleMove(baseCard.getId());
+            playCard(owner);
+            owner.removeFrHand(this);
+            Destroy(gameObject);
+            owner.consumeStamina(cost);
+        }
+
     }
 
-//                                                  **********IMPLEMENTATION***********
+    //                                                  **********IMPLEMENTATION***********
 
     //Trigger Update
-    public void triggerUpdate(List<triggerTypes> triggers){
+    public void triggerUpdate(HashSet<triggerTypes> triggers)
+    {
         //Here come the if else madness
-        
+
     }
     //Initialization
-    
-    public void Start(){
-        physicalDmg = baseCard.basePhysicalDmg;
-        cost = baseCard.baseCost;
-        magicDmg = baseCard.baseMagicDmg;
+
+    public void Start()
+    {
+        physicalDmg = baseCard.getBasePhysicalDmg();
+        cost = baseCard.getBaseCost();
+        magicDmg = baseCard.getBaseMagicalDmg();
     }
 }

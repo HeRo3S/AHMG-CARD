@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 9544dc8a6630aa5458ce2326df6f200c
+guid: 4f853a51105973743ab1be6f1334ca12
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - endTurnBtnPrefab: {fileID: 3255475672296398376, guid: c09859fae6645df4aa4fbb31d86916ad, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

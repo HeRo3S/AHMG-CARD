@@ -1,15 +1,17 @@
-using System.Security.Cryptography;
-using System.Collections;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
 
-public static class UtilityFunction{
+public static class UtilityFunction
+{
 
     private static RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
     //Shuffle list
-    public static void Shuffle<T>(this IList<T> list){
+    public static void Shuffle<T>(this IList<T> list)
+    {
         int n = list.Count;
-        while (n > 1){
+        while (n > 1)
+        {
             byte[] box = new byte[1];
             do provider.GetBytes(box);
             while (!(box[0] < n * (Byte.MaxValue / n)));

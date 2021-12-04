@@ -9,6 +9,8 @@ public class IG_Card : MonoBehaviour, TriggerUpdateInterface, ClickableInterface
     internal int cost;
     internal int physicalDmg;
     internal int magicDmg;
+    internal int healPotency;
+    internal int staminaPotency;
     //Other variable
     internal IG_Player owner;
     private IG_Deck deck;
@@ -45,5 +47,7 @@ public class IG_Card : MonoBehaviour, TriggerUpdateInterface, ClickableInterface
         physicalDmg = baseCard.getBasePhysicalDmg();
         cost = baseCard.getBaseCost();
         magicDmg = baseCard.getBaseMagicalDmg();
+        healPotency = baseCard.getBaseHealPotency();
+        staminaPotency = baseCard.getBaseStaminaPotency();
     }
 }

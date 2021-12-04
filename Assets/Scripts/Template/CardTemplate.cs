@@ -13,8 +13,8 @@ public abstract class CardTemplate : ScriptableObject
     protected int baseCost;
     protected int basePhysicalDmg;
     protected int baseMagicDmg;
-    public delegate void cardDelegate(IG_Player owner);
-    public cardDelegate playCard;
+    protected int baseHealPotency;
+    protected int baseStaminaPotency;
     //Copy current card info to new one
     public GameObject IGcardObj;
     //Getter
@@ -56,6 +56,13 @@ public abstract class CardTemplate : ScriptableObject
     internal int getBaseMagicalDmg()
     {
         return baseMagicDmg;
+    }
+
+    internal int getBaseHealPotency(){
+        return baseHealPotency;
+    }
+    internal int getBaseStaminaPotency(){
+        return baseStaminaPotency;
     }
 
     protected IG_Card copyToIG()

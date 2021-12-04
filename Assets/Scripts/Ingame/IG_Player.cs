@@ -110,6 +110,10 @@ public class IG_Player : MonoBehaviour, TriggerUpdateInterface
         healthPtsAdjust(-dmg);
     }
 
+    public void heal(int amount){
+        healthPtsAdjust(amount);
+    }
+
     public void repenishStamina(int amount)
     {
         staminaAdjust(amount);
@@ -203,7 +207,7 @@ public class IG_Player : MonoBehaviour, TriggerUpdateInterface
                 int canDraw = baseCharacter.getBaseCardDraw();
                 while (hand.Count < baseCharacter.getBaseHandSize() && canDraw > 0)
                 {
-                    drawCard(0, false);
+                    drawCard(0, true);
                     canDraw--;
                 }
             }

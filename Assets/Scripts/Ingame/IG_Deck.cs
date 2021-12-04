@@ -36,7 +36,7 @@ public class IG_Deck : MonoBehaviour, TriggerUpdateInterface
             shuffleDeck();
         }
         //Real deal
-        pos = Math.Min(pos, cardList.Count - 1);
+        pos = Math.Max(0,Math.Min(pos, cardList.Count - 1));
         IG_Card target = cardList[pos].createCard(owner);
         if (removeFrDeck)
         {

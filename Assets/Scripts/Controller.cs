@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using TMPro;
 public class Controller : MonoBehaviour
 {
     private HashSet<triggerTypes> triggers;
@@ -22,9 +23,8 @@ public class Controller : MonoBehaviour
     {
         turn = 0;
 
-        GameObject endTurnBtn = Instantiate(Resources.Load<GameObject>("Handmade assets/Card") as GameObject);
-        EndTurnButton endTurnButton = endTurnBtn.AddComponent<EndTurnButton>() as EndTurnButton;
-        endTurnButton.setController(this);
+        GameObject endTurnBtn = GameObject.Find("UI/Canvas/ButtonManager");
+        endTurnBtn.GetComponent<EndTurnButton>().setController(this);
 
 
         players = new List<IG_Player>();
@@ -44,7 +44,7 @@ public class Controller : MonoBehaviour
         players[0].setController(this);
         players[1].setController(this);
 
-        endTurnButton.onClick();
+        endTurnBtn.GetComponent<EndTurnButton>().onClick();
 
         //UI elements
         players[0].setRenderPosition(0);
@@ -52,6 +52,7 @@ public class Controller : MonoBehaviour
         healthDisplay = new List<Text>();
         staminaDisplay = new List<Text>();
 
+        //testing around
         healthDisplay.Add(GameObject.Find("UI/Canvas/Player/Health").GetComponent<Text>());
         staminaDisplay.Add(GameObject.Find("UI/Canvas/Player/Stamina").GetComponent<Text>());
         healthDisplay.Add(GameObject.Find("UI/Canvas/Enemy/Health").GetComponent<Text>());

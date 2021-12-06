@@ -152,10 +152,16 @@ public class IG_Player : MonoBehaviour, TriggerUpdateInterface
         if (player_number == 0)
         {
             Vector3 deckPosition = new Vector3(-1f, 0.075f, -0.65f);
+            var rotationVector = transform.rotation.eulerAngles;
+            rotationVector.x = 90;
+            rotationVector.y = 180;
+            rotationVector.z = 180;
+
             deck.transform.position = deckPosition;
             for (int i = 0; i < hand.Count; i++)
             {
                 hand[i].transform.position = deckPosition + new Vector3(0.4f * (i + 1), 0, 0);
+                hand[i].transform.rotation = Quaternion.Euler(rotationVector);
             }
         }
         else if (player_number == 1)

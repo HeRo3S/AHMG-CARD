@@ -71,7 +71,7 @@ public abstract class CardTemplate : ScriptableObject
         GameObject cardObj = Instantiate(IGcardObj);
         //UI Setup
         Text name = cardObj.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Text>() as Text;
-        name.text = cardName;
+        name.text = cardName + '\n' + cardDescription;
         //
         IG_Card target = cardObj.AddComponent<IG_Card>();
         target.baseCard = this;

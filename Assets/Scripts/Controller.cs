@@ -59,8 +59,8 @@ public class Controller : MonoBehaviour
         staminaDisplay.Add(GameObject.Find("UI/Canvas/Enemy/Stamina").GetComponent<Text>());
 
         //Set up battle history JSON
-        battleHistory.player1_id = 1;
-        battleHistory.player2_id = 1;
+        battleHistory.player1_id = preBattleInfo.id;
+        battleHistory.player2_id = preBattleInfo.id;
         battleHistory.deck1_id = 1;
         battleHistory.deck2_id = 1;
 
@@ -92,7 +92,7 @@ public class Controller : MonoBehaviour
     IEnumerator Upload(String data)
     {
         byte[] myData = System.Text.Encoding.UTF8.GetBytes(data);
-        UnityWebRequest www = UnityWebRequest.Put("http://localhost:3000/ahmg_card_data/send_battle_result", myData);
+        UnityWebRequest www = UnityWebRequest.Put("http://localhost:3000/ahmg_card/send_battle_result", myData);
         www.SetRequestHeader("Content-Type", "application/json");
         yield return www.SendWebRequest();
 

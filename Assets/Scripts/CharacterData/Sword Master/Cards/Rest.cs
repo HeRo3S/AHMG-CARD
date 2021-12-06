@@ -8,12 +8,12 @@ public class Rest : CardTemplate
 
         //Setting card base stat
         cardName = "Rest";
-        cardDescription = "Restore " + baseHealPotency + " stamina";
         cardId = 7;
         rank = 1;
         cardType = cardTypes.UTILITY;
         baseCost = 0;
         baseStaminaPotency = 5;
+        cardDescription = "Restore " + baseStaminaPotency + " stamina";
     }
 
     public override IG_Card createCard(IG_Player player)

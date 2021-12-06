@@ -8,13 +8,13 @@ public class Slash : CardTemplate
 
         //Setting card base stat
         cardName = "Slash";
-        cardDescription = "Deal" + basePhysicalDmg + "physical damage";
         cardId = 4;
         rank = 1;
         cardType = cardTypes.ATTACK;
         baseCost = 6;
         basePhysicalDmg = 20;
         baseMagicDmg = 0;
+        cardDescription = "Deal" + basePhysicalDmg + "physical damage";
     }
 
     public override IG_Card createCard(IG_Player player)

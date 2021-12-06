@@ -8,13 +8,13 @@ public class Stab : CardTemplate
 
         //Setting card base stat
         cardName = "Stab";
-        cardDescription = "Deal" + basePhysicalDmg + "physical damage";
         cardId = 3;
         rank = 1;
         cardType = cardTypes.ATTACK;
         baseCost = 3;
         basePhysicalDmg = 8;
         baseMagicDmg = 0;
+        cardDescription = "Deal" + basePhysicalDmg + "physical damage";
     }
 
     public override IG_Card createCard(IG_Player player)

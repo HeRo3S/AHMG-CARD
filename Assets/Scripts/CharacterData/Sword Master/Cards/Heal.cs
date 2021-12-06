@@ -8,12 +8,12 @@ public class Heal : CardTemplate
 
         //Setting card base stat
         cardName = "Heal";
-        cardDescription = "Heal by " + baseHealPotency;
         cardId = 6;
         rank = 1;
         cardType = cardTypes.SUPPORT;
         baseCost = 3;
         baseHealPotency = 15;
+        cardDescription = "Heal by " + baseHealPotency;
     }
 
     public override IG_Card createCard(IG_Player player)

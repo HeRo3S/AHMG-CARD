@@ -14,7 +14,7 @@ public class Stab : CardTemplate
         baseCost = 3;
         basePhysicalDmg = 8;
         baseMagicDmg = 0;
-        cardDescription = "Deal" + basePhysicalDmg + "physical damage";
+        cardDescription = "Deal " + basePhysicalDmg + " physical damage";
     }
 
     public override IG_Card createCard(IG_Player player)

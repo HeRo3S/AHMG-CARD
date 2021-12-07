@@ -14,7 +14,7 @@ public class RapidNeedle : CardTemplate
         baseCost = 10;
         basePhysicalDmg = 5;
         baseMagicDmg = 0;
-        cardDescription = "Deal" + basePhysicalDmg + "physical damage 8 time";
+        cardDescription = "Deal " + basePhysicalDmg + " physical damage 8 time";
     }
 
     public override IG_Card createCard(IG_Player player)

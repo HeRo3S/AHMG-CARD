@@ -14,7 +14,7 @@ public class Slash : CardTemplate
         baseCost = 6;
         basePhysicalDmg = 20;
         baseMagicDmg = 0;
-        cardDescription = "Deal" + basePhysicalDmg + "physical damage";
+        cardDescription = "Deal " + basePhysicalDmg + " physical damage";
     }
 
     public override IG_Card createCard(IG_Player player)

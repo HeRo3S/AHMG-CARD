@@ -12,8 +12,8 @@ public abstract class CharacterTemplate : ScriptableObject
     //Fixed stat
     protected int fixed_maxHp;
     protected int fixed_staminaRegen;
-    protected int fixed_handSize = 8;
-    protected int fixed_cardDraw = 3;
+    protected int fixed_handSize = 6;
+    protected int fixed_cardDraw = 2;
     //Skill list
     protected List<SkillTemplate> skillList = new List<SkillTemplate> { };
 

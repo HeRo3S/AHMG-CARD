@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 15a47c9a76cddc3498b0ca07513fbba1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - IGcharObj: {fileID: 1799326973140478481, guid: 8fd73f36818c7d44ba29fbe5c32bf692, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
